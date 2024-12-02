@@ -53,42 +53,43 @@ if __name__ == "__main__":
     list_of_docx_file_paths = []
 
     if int(pdf_count) > 1:
-
         try:
             for i in range(int(pdf_count)):
             
-                pdf_file_path = input("Enter the absolute path of .pdf file path\nExample path:'E:\\important.pdf'\n\n--> ")
+                pdf_file_path = input("Enter the absolute path of .pdf file path\nExample path:'E:\\important.pdf'\n\n--> ") 
+    
+               # checking if the file within the path even exist.
+                if pdf_file_path.endswith(".pdf"):
                     
-                # checking if the file within the path even exist.
-                if pdf_file_path != pdf_file_path + ".pdf":
-                    print("Please provide the .pdf file along withing path. Try again!")
+                    
+
+                    list_of_pdf_file_paths.append(pdf_file_path)
+        
+                    document_path = input("\nEnter the absolute path for docx file\nExample path: 'D:\\document .docx' (if drive letter is not specified, current directory will be a path)\n--> ")
+        
+                    list_of_docx_file_paths.append(document_path)
+                else:
+                    print("\nPlease provide the .pdf file within the absolute path. Try again!\n")
                     break
-                
-                list_of_pdf_file_paths.append(pdf_file_path)
-        
-                document_path = input("\nEnter the absolute path for docx file\nExample path: 'D:\\document .docx' (if drive letter is not specified, current directory will be a path)\n--> ")
-        
-                list_of_docx_file_paths.append(document_path)
 
             for i in range(int(pdf_count)):
                 main(list_of_pdf_file_paths[i], list_of_docx_file_paths[i])
 
         except:
-            print("\nHINT: The script wouldn't work properly, if you don't provide .pdf file within your path.")
+            print("HINT: The script wouldn't work properly, if you don't provide .pdf file within your path.")
     else:
         try:
-
-    
+ 
             one_pdf_file_path = input("Enter the absolute path of .pdf file path\nExample path:'E:\\important.pdf'\n\n--> ")
             
-            if one_pdf_file_path != one_pdf_file_path + ".pdf":
-                print("Please provide the .pdf file along withing path. Try again!")
+            if one_pdf_file_path.endswith(".pdf"):
 
-            else:
                 one_document_path = input("\nEnter the absolute path for docx file\nExample path: 'D:\\document .docx' (if drive letter is not specified, current directory will be a path)\n--> ")
+            else:
+                print("\nPlease provide the .pdf file along withine the absolute path. Try again!\n")
+                
 
             main(one_pdf_file_path, one_document_path)
-        
         except:
             print("\nHINT: The script wouldn't work properly, if you don't provide .pdf file within your path.")
 
