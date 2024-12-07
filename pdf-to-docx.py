@@ -16,7 +16,7 @@ def main(pdf_path):
 
 if __name__ == "__main__":
 
-    pdf_count = input("How many pdfs you want to convert? (Max 10 is recommended.)\n--> ")
+    pdf_count = input("How many pdfs you want to convert? (Max 10 conversion at a time is recommended.)\n--> ")
     
     list_of_pdf_file_paths = []
 
