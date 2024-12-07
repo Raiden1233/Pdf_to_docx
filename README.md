@@ -1,5 +1,5 @@
 # IMPORTANT
-I am assuming you have python installed already if not, install python first before using the script. If you are in windows be sure to check PATH thingy while using the setup. 
+I am assuming you have python installed already if not, install python first before using the script. If you are in windows be sure to check PATH thing, when running the setup. 
 # Pdf_to_docx
 A script to convert pdf file into docx/document
 # Required modules
