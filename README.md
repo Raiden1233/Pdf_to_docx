@@ -7,4 +7,4 @@
 Copy and paste this command to install pdf2docx module: `pip install pdf2docx` in powershell or cmd to run this command ( terminal if you have it ).
 Now you are good to go, run the script, and follow instructions properly.
 
-![](https://i.pinimg.com/originals/26/26/0d/26260d6850d544d5d488bfe64f84ef38.jpg)
+![](http://img1.ak.crunchyroll.com/i/spire2/180a8752234002128be1dd4459e3e8bd1308352623_full.jpg)
