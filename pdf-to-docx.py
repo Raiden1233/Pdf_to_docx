@@ -14,7 +14,7 @@ def pdf_to_docx(pdf_path):
             conv = Converter(pdf_file_path_confirmed)
             conv.convert(f"{docx_path}.docx")
             conv.close()
-            print(f"\nDocument Path Confirmed: Current directory\n")
+            
     except Exception as e:
         print(e)
 
@@ -40,7 +40,7 @@ def main():
             
         with multiprocessing.Pool() as p:
             p.map(pdf_to_docx, list_of_pdf_file_paths)
-
+            print(f"\nDocument Path Confirmed: Current directory\n")
         
     else:
         one_pdf_file_path = input("Enter the absolute path of .pdf file path\nExample path:'E:\\important.pdf'\n\n--> ")
@@ -49,7 +49,7 @@ def main():
             print("\nPlease provide the .pdf file only along withine the absolute path. Try again!\n")
             return
         pdf_to_docx(one_pdf_file_path)
-
+        print(f"\nDocument Path Confirmed: Current directory\n")
 if __name__ == "__main__":
 
     main()
