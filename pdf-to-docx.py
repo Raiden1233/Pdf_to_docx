@@ -1,42 +1,56 @@
 from pdf2docx import Converter
+import multiprocessing
 
-def main(pdf_path):
+def pdf_to_docx(pdf_path):
 
-    pdf_file_path_input = pdf_path
+    try:
+        pdf_file_path_input = pdf_path
 
-    if pdf_file_path_input.endswith(".pdf"):
+        if pdf_file_path_input.endswith(".pdf"):
 
-        pdf_file_path_confirmed = pdf_file_path_input.replace("\\", "\\")
+            pdf_file_path_confirmed = pdf_file_path_input.replace("\\", "\\")
 
-        docx_path = pdf_path.replace(".pdf", "")
-        print(f"\nDocument Path Confirmed: Current directory\n")
-        conv = Converter(pdf_file_path_confirmed)
-        conv.convert(f"{docx_path}.docx")
-        conv.close()
+            docx_path = pdf_path.replace(".pdf", "")
+            conv = Converter(pdf_file_path_confirmed)
+            conv.convert(f"{docx_path}.docx")
+            conv.close()
+            print(f"\nDocument Path Confirmed: Current directory\n")
+    except Exception as e:
+        print(e)
 
-if __name__ == "__main__":
-
-    pdf_count = input("How many pdfs you want to convert? (Max 10 conversion at a time is recommended.)\n--> ")
+def main():
+    pdf_count = input("How many pdfs you want to convert? (Max 10 is recommended.)\n--> ")
     
     list_of_pdf_file_paths = []
 
+    if pdf_count == "0":
+        print("Invalid value! try again ")
+        return
+    
     if int(pdf_count) > 1:
-        try:
-            for i in range(int(pdf_count)):
-                pdf_file_path = input("\n\nEnter the absolute path of .pdf file path\nExample path:'E:\\important.pdf'\n\n--> ") 
-               # checking if the file within the path even exist.
-                if pdf_file_path.endswith(".pdf"):
-                    list_of_pdf_file_paths.append(pdf_file_path)
-                else:
-                    break
-            for i in range(int(pdf_count)):
-                main(list_of_pdf_file_paths[i])
-        except:
-            print("HINT: The script wouldn't work properly, if you don't provide .pdf file within your all paths. ")
+        
+        for i in range(int(pdf_count)):
+            pdf_file_path = input("\n\nEnter the absolute path of .pdf file path\nExample path:'E:\\important.pdf'\n\n--> ") 
+           # checking if the file within the path even exist.
+            if pdf_file_path.endswith(".pdf") != True:
+                print("HINT: The script wouldn't work properly, if you don't provide .pdf file within your all paths. ")
+                break 
+            list_of_pdf_file_paths.append(pdf_file_path)
+
+            
+        with multiprocessing.Pool() as p:
+            p.map(pdf_to_docx, list_of_pdf_file_paths)
+
+        
     else:
         one_pdf_file_path = input("Enter the absolute path of .pdf file path\nExample path:'E:\\important.pdf'\n\n--> ")
         
         if one_pdf_file_path.endswith(".pdf") != True:
             print("\nPlease provide the .pdf file only along withine the absolute path. Try again!\n")
-        else:
-            main(one_pdf_file_path)
+            return
+        pdf_to_docx(one_pdf_file_path)
+
+if __name__ == "__main__":
+
+    main()
+
